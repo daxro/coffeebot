@@ -1,0 +1,26 @@
+{
+  "name": "coffeebot",
+  "version": "1.0.0",
+  "description": "A Slack bot for all things coffee.",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "botkit": "^0.4.6",
+    "express": "^4.14.0",
+    "json": "^9.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daxro/coffeebot.git"
+  },
+  "author": "daxro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daxro/coffeebot/issues"
+  },
+  "homepage": "https://github.com/daxro/coffeebot#readme"
+}
