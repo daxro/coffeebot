@@ -16,39 +16,32 @@ var controller = Botkit.slackbot({
 });
 
 function sendToSlack(message) {
-  console.log(message)
 
-  // Set the headers
-  var headers = {
-    'User-Agent':       'Super Agent/0.0.1',
-    'Content-Type':     'application/x-www-form-urlencoded'
-  }
+  var body = {
+    text: message,
+    channel: '#coffeebot-test'
+  };
 
-  // Configure the request
-  var options = {
-    url: 'https://hooks.slack.com/services/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',
+  request({
     method: 'POST',
-    headers: headers,
-    payload: {
-      'channel': '#coffeebot-test',
-      'text': 'hello'
+    url: config.slack.webhook,
+    headers: {
+      'Content-Type': 'application/json'
     }
-  }
-
-  // Start the request
-  request(options, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      // Print out the response body
-      console.log(body)
-    }
-  })
+  }).end(JSON.stringify(body))
 }
 
 app.get('/brew/', function(req, res) {
-  sendToSlack('Brewing')
-  setTimeout(function() {
-    sendToSlack('Brewing done')
-  }, 3600) //change to 6 min (360000)
+  // only execute on requets that includes the code
+  if (req.query.code == config.slack.get_code) {
+    console.log('Correct code.')
+    sendToSlack('I just started brewing. I will be back in six minutes!')
+    setTimeout(function() {
+      sendToSlack('I am done! Come and get some of that coffee.')
+    }, 360000)
+  } else {
+    console.log('Incorrect code.')
+  }
 })
 
 app.post('/wakeup/', function(req, res) {
