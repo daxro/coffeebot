@@ -6,6 +6,8 @@ var request = require('request')
 
 var app = express()
 
+var port = process.env.port || 8080
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -31,7 +33,13 @@ function sendToSlack(message) {
   }).end(JSON.stringify(body))
 }
 
+app.get('/', function(req, res) {
+  res.send('Hello.')
+})
+
 app.get('/brew/', function(req, res) {
+  res.send('Hello.')
+
   // only execute on requets that includes the code
   if (req.query.code == config.slack.get_code) {
     console.log('Correct code.')
@@ -81,6 +89,6 @@ controller.hears('hello', ['direct_message','direct_mention','mention'], functio
 
 })
 
-app.listen(3000, function() {
-  console.log('App listening...')
+app.listen(port, function() {
+  console.log('App listening... on ' + port)
 })
