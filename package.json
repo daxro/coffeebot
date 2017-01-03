@@ -7,7 +7,9 @@
     "body-parser": "^1.15.2",
     "botkit": "^0.4.6",
     "express": "^4.14.0",
-    "json": "^9.0.4"
+    "json": "^9.0.4",
+    "node-emoji": "^1.4.3",
+    "node-json-db": "^0.7.3"
   },
   "devDependencies": {},
   "scripts": {

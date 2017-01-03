@@ -1,8 +1,9 @@
-var Botkit = require('botkit');
-var config = require('./config.js');
+var Botkit = require('botkit')
+var config = require('./config.js')
+var sendToSlack = require('./lib/sendToSlack.js')
 var express = require('express')
 var bodyParser = require('body-parser')
-var request = require('request')
+var emoji = require('node-emoji')
 
 var app = express()
 
@@ -17,28 +18,12 @@ var controller = Botkit.slackbot({
   debug: false
 });
 
-function sendToSlack(message) {
-
-  var body = {
-    text: message,
-    channel: '#coffeebot-test'
-  };
-
-  request({
-    method: 'POST',
-    url: config.slack.webhook,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).end(JSON.stringify(body))
-}
-
 app.get('/', function(req, res) {
-  res.send('Hello.')
+  res.send(emoji.get('coffee'))
 })
 
 app.get('/brew/', function(req, res) {
-  res.send('Hello.')
+  res.send(emoji.get('coffee'))
 
   // only execute on requets that includes the code
   if (req.query.code == config.slack.get_code) {
@@ -86,7 +71,6 @@ app.post('/sleep/', function(req, res) {
 
 controller.hears('hello', ['direct_message','direct_mention','mention'], function(bot, message) {
   bot.reply(message,'Hello yourself');
-
 })
 
 app.listen(port, function() {
