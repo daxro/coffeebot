@@ -2,6 +2,9 @@
 config.js
 app.yaml
 
+# db
+db.json
+
 # Logs
 logs
 *.log

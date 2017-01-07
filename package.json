@@ -6,8 +6,11 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "botkit": "^0.4.6",
+    "cron": "^1.2.1",
+    "datejs": "^1.0.0-rc3",
     "express": "^4.14.0",
     "json": "^9.0.4",
+    "moment-timezone": "^0.5.11",
     "node-emoji": "^1.4.3",
     "node-json-db": "^0.7.3",
     "request": "^2.79.0"
